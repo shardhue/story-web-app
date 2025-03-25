@@ -3,7 +3,11 @@ export default {
   data() {
     return {
       shownPages: 0,
-      stories: [] as {title: string}[],
+      stories: [] as {
+        title: string,
+        dek: string,
+        hero_image: {url: string},
+      }[],
       storiesLoaded: false
     }
   },
@@ -34,28 +38,49 @@ export default {
 
 <template>
 
-  <div v-for="story in stories">
-    {{ story.title }}
-  </div>
+    <div class="story-grid">
 
-  <div v-if="!storiesLoaded">
-    Loading stories
-  </div>
+      <div v-for="story in stories" class="story-card">
+        <div class="story-card-image">
+          <img v-bind:src="story.hero_image.url" :style="'width:100%; height:100%; object-fit:cover;'">
+        </div>
+        <div class="story-card-text">
+          <h3>{{ story.title }}</h3>
+          <p v-html="story.dek"></p>
+        </div>
+      </div>
 
-  <button v-on:click="addStories()">more stories</button>
+    </div>
+
+    <div v-if="!storiesLoaded">
+      Loading stories
+    </div>
+    <button v-else v-on:click="addStories()">More stories</button>
+  
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+
+.story-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-auto-rows: 1fr;
+  gap: 2rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.story-card {
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: 20rem auto;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.story-card-image {
+  overflow: hidden;
+  background-color: grey;
 }
+
+.story-card-text {
+  padding: 1rem;
+}
+
 </style>
