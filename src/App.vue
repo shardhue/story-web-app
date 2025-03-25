@@ -2,12 +2,16 @@
 export default {
   data() {
     return {
-      stories: [] as {title: string}[]
+      shownPages: 0,
+      stories: [] as {title: string}[],
+      storiesLoaded: false
     }
   },
   methods: {
-    async addStories(pageNumber:Number) {
-      const url = "https://cryptodire.kontinentalist.com/api/v1/stories?page=" + pageNumber;
+    async addStories() {
+      this.storiesLoaded = false
+      this.shownPages += 1;
+      const url = "https://cryptodire.kontinentalist.com/api/v1/stories?page=" + this.shownPages;
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -15,6 +19,7 @@ export default {
         }
         const json = await response.json();
         this.stories.push(...json.data);
+        this.storiesLoaded = true
       }
       catch (error) {
         console.log(error);
@@ -22,17 +27,22 @@ export default {
     }
   },
   created() {
-    this.addStories(1);
+    this.addStories();
   }
 }
 </script>
 
 <template>
+
   <div v-for="story in stories">
     {{ story.title }}
   </div>
 
-  <button v-on:click="addStories(2)">more storie</button>
+  <div v-if="!storiesLoaded">
+    Loading stories
+  </div>
+
+  <button v-on:click="addStories()">more stories</button>
 </template>
 
 <style scoped>
