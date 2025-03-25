@@ -1,17 +1,38 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+export default {
+  data() {
+    return {
+      stories: [] as {title: string}[]
+    }
+  },
+  methods: {
+    async addStories(pageNumber:Number) {
+      const url = "https://cryptodire.kontinentalist.com/api/v1/stories?page=" + pageNumber;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        this.stories.push(...json.data);
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
+  },
+  created() {
+    this.addStories(1);
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div v-for="story in stories">
+    {{ story.title }}
   </div>
-  <HelloWorld msg="Vite + Vue" />
+
+  <button v-on:click="addStories(2)">more storie</button>
 </template>
 
 <style scoped>
