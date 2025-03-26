@@ -39,27 +39,30 @@ export default {
 
 <template>
 
-  <div class="main">
+  <div class="p-24">
 
-    <div class="story-grid">
+    <div class="grid grid-cols-1 auto-rows-[30rem] md:auto-rows-[35rem] lg:auto-rows-[40rem] gap-8 md:grid-cols-2 lg:grid-cols-3">
       <TransitionGroup>
-      <div v-for="story in stories" :key="story.id" class="story-card">
-        <div class="story-card-image">
+      <div v-for="story in stories" :key="story.id" class="border-1 border-gray-400 bg-white rounded-xl overflow-hidden
+      shadow-md grid grid-rows-10">
+        <div class="row-span-4 bg-gray-300">
           <img v-bind:src="story.hero_image.url" :style="'width:100%; height:100%; object-fit:cover;'">
         </div>
-        <div class="story-card-text">
-          <h2>{{ story.title }}</h2>
-          <p v-html="story.dek"></p>
+        <div class="row-span-6 p-8 overflow-scroll">
+          <h2 class="text-xl font-bold">{{ story.title }}</h2>
+          <hr class="my-2 border-gray-400">
+          <p v-html="story.dek" class="text-sm"></p>
         </div>
       </div>
       </TransitionGroup>
     </div>
     
-    <div class="navigation">
-      <p v-if="!storiesLoaded" class="loading-text">
+    <div class="mt-12 flex justify-center items-center h-16">
+      <p v-if="!storiesLoaded" class="animate-bounce">
         Loading stories...
       </p>
-      <button v-else v-on:click="addStories()" class="stories-btn">
+      <button v-else v-on:click="addStories()" class="bg-gray-200 border-1 border-gray-400 shadow-md rounded-lg p-4
+      transition duration-150 hover:bg-gray-300">
         More stories
       </button>
     </div>
@@ -78,78 +81,6 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-
-.main {
-  padding: 3rem;
-}
-
-.story-grid {
-  display: grid;
-  grid-template-columns: auto;
-  gap: 2rem;
-}
-
-.story-card {
-  border: 1px solid grey;
-  border-radius: 1rem;
-  background-color: white;
-  display: grid;
-  grid-template-rows: 30% auto;
-  height: 20rem;
-  overflow: scroll;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.story-card-image {
-  overflow: hidden;
-  background-color: grey;
-}
-
-.story-card-text {
-  padding: 2rem;
-}
-
-.navigation {
-  margin-top: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-text {
-  animation: updown 1s ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-.stories-btn {
-  background-color: lightgrey;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid grey;
-  border-radius: 1rem;
-  padding: 1rem;
-  font-size: inherit;
-  transition: 0.2s;
-}
-
-.stories-btn:hover {
-  background-color: white;
-}
-
-@media only screen and (min-width: 48rem) {
-  .story-grid {grid-template-columns: auto auto;}
-  .story-card {height: 30rem;}
-}
-
-@media only screen and (min-width: 64rem) {
-  .story-grid {grid-template-columns: auto auto auto;}
-  .story-card {height: 40rem;}
-}
-
-@keyframes updown {
-  0% {transform: translateY(0.5rem);}
-  50% {transform: translateY(-0.5rem);}
-  100% {transform: translateY(0.5rem);}
 }
 
 </style>
