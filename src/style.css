@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+    --default-font-family: Montserrat;
+}
+
 @font-face {
     font-family: Montserrat;
     src: url(./assets/fonts/Montserrat-Regular.ttf);
 }
+
+body {
+    @apply bg-gray-100 text-gray-700
+}
+
+a {
+    @apply underline text-rose-500 transition duration-100
+ }
+ a:hover {
+    @apply text-rose-300
+ }

@@ -1,5 +1,38 @@
+<template>
+
+  <div class="w-full h-40 bg-rose-400 shadow-md flex justify-center items-center">
+    <h1 class="text-3xl text-white font-bold">Story Web App</h1>
+  </div>
+
+  <div class="p-24 pt-16">
+
+    <div class="grid grid-cols-1 auto-rows-[30rem] md:auto-rows-[35rem] lg:auto-rows-[40rem] gap-12 md:grid-cols-2 lg:grid-cols-3">
+      <TransitionGroup>
+      <StoryCard v-for="story in stories" :key="story.id" :title="story.title" :dek="story.dek" :heroImageUrl="story.hero_image.url"/>
+      </TransitionGroup>
+    </div>
+    
+    <div class="mt-12 flex justify-center items-center h-16">
+      <p v-if="!storiesLoaded" class="animate-bounce">
+        Loading stories...
+      </p>
+      <button v-else v-on:click="addStories()" class="bg-rose-400 shadow-md rounded-lg p-4 transition duration-150 
+      hover:bg-gray-300 text-white font-bold">
+        More stories
+      </button>
+    </div>
+
+  </div>
+  
+</template>
+
 <script lang="ts">
+import StoryCard from './components/StoryCard.vue';
+
 export default {
+  components: {
+    StoryCard
+  },
   data() {
     return {
       shownPages: 0,
@@ -36,40 +69,6 @@ export default {
   }
 }
 </script>
-
-<template>
-
-  <div class="p-24">
-
-    <div class="grid grid-cols-1 auto-rows-[30rem] md:auto-rows-[35rem] lg:auto-rows-[40rem] gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <TransitionGroup>
-      <div v-for="story in stories" :key="story.id" class="border-1 border-gray-400 bg-white rounded-xl overflow-hidden
-      shadow-md grid grid-rows-10">
-        <div class="row-span-4 bg-gray-300">
-          <img v-bind:src="story.hero_image.url" :style="'width:100%; height:100%; object-fit:cover;'">
-        </div>
-        <div class="row-span-6 p-8 overflow-scroll">
-          <h2 class="text-xl font-bold">{{ story.title }}</h2>
-          <hr class="my-2 border-gray-400">
-          <p v-html="story.dek" class="text-sm"></p>
-        </div>
-      </div>
-      </TransitionGroup>
-    </div>
-    
-    <div class="mt-12 flex justify-center items-center h-16">
-      <p v-if="!storiesLoaded" class="animate-bounce">
-        Loading stories...
-      </p>
-      <button v-else v-on:click="addStories()" class="bg-gray-200 border-1 border-gray-400 shadow-md rounded-lg p-4
-      transition duration-150 hover:bg-gray-300">
-        More stories
-      </button>
-    </div>
-
-  </div>
-  
-</template>
 
 <style scoped>
 
