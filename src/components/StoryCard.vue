@@ -1,17 +1,19 @@
 <template>
-      <div class="border-1 border-gray-300 bg-white rounded-xl overflow-hidden shadow-md grid grid-rows-10">
-        <div class="row-span-4 bg-gray-300">
-          <img v-bind:src="heroImageUrl" :style="'width:100%; height:100%; object-fit:cover;'">
-        </div>
-        <div ref="textbox" class="row-span-6 p-8 overflow-scroll" v-on:scroll="checkScrollLength" v-bind:class="{
-          'unscrolled': scrollable && scrollTop && !scrollBottom,
-          'scrolling': scrollable && !scrollTop && !scrollBottom,
-          'scrolled': scrollable && !scrollTop && scrollBottom}">
-          <h2 class="text-xl font-bold">{{ title }}</h2>
-          <hr class="my-2 border-gray-400">
-          <p v-html="dek" class="text-sm"></p>
-        </div>
-      </div>
+
+  <div class="border-1 border-gray-300 bg-white rounded-xl overflow-hidden shadow-md grid grid-rows-10">
+    <div class="row-span-4 bg-gray-300">
+      <img v-bind:src="heroImageUrl" :style="'width:100%; height:100%; object-fit:cover;'">
+    </div>
+    <div ref="textbox" class="row-span-6 p-8 overflow-scroll" v-on:scroll="checkScrollLength" v-bind:class="{
+      'unscrolled': scrollable && scrollTop && !scrollBottom,
+      'scrolling': scrollable && !scrollTop && !scrollBottom,
+      'scrolled': scrollable && !scrollTop && scrollBottom}">
+      <h2 class="text-xl font-bold">{{ title }}</h2>
+      <hr class="my-2 border-gray-400">
+      <p v-html="dek" class="text-sm"></p>
+    </div>
+  </div>
+  
 </template>
 
 <script lang="ts">

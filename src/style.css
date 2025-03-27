@@ -14,8 +14,8 @@ body {
 }
 
 a {
-    @apply underline text-rose-500 transition duration-100
+    @apply underline text-teal-600 transition duration-100
  }
  a:hover {
-    @apply text-rose-300
+    @apply text-gray-400
  }

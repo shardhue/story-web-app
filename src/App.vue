@@ -1,8 +1,6 @@
 <template>
 
-  <div class="w-full h-40 bg-rose-400 shadow-md flex justify-center items-center">
-    <h1 class="text-3xl text-white font-bold">Story Web App</h1>
-  </div>
+  <SiteHeader/>
 
   <div class="p-24 pt-16">
 
@@ -16,8 +14,8 @@
       <p v-if="!storiesLoaded" class="animate-bounce">
         Loading stories...
       </p>
-      <button v-else v-on:click="addStories()" class="bg-rose-400 shadow-md rounded-lg p-4 transition duration-150 
-      hover:bg-gray-300 text-white font-bold">
+      <button v-else v-on:click="addStories()" class="bg-teal-600 shadow-md rounded-lg p-4 transition duration-150 
+      hover:bg-gray-400 text-white font-bold">
         More stories
       </button>
     </div>
@@ -27,10 +25,12 @@
 </template>
 
 <script lang="ts">
+import SiteHeader from './components/SiteHeader.vue';
 import StoryCard from './components/StoryCard.vue';
 
 export default {
   components: {
+    SiteHeader,
     StoryCard
   },
   data() {
