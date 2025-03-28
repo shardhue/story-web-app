@@ -32,27 +32,30 @@ export default {
   },
   methods: {
     checkScrollLength() {
-      const obj = this.$refs['textbox'] as HTMLDivElement
+      const cardText = this.$refs['textbox'] as HTMLDivElement
 
-      if (obj.scrollHeight == obj.clientHeight) {
+      //checks if the card text can be scrolled
+      if (cardText.scrollHeight == cardText.clientHeight) {
         this.scrollable = false;
       }
-      else if (obj.scrollHeight != obj.clientHeight) {
+      else if (cardText.scrollHeight != cardText.clientHeight) {
         this.scrollable = true;
       }
-      
-      if (Math.abs(obj.scrollHeight - obj.clientHeight - obj.scrollTop) <= 1) {
-        this.scrollBottom = true;
-      }
-      else {
-        this.scrollBottom = false;
-      }
 
-      if (obj.scrollTop == 0) {
+      //checks if card text has been scrolled to the top
+      if (cardText.scrollTop == 0) {
         this.scrollTop = true;
       }
       else {
         this.scrollTop = false;
+      }
+      
+      //checks if card text has been scrolled to the bottom
+      if (Math.abs(cardText.scrollHeight - cardText.clientHeight - cardText.scrollTop) <= 1) {
+        this.scrollBottom = true;
+      }
+      else {
+        this.scrollBottom = false;
       }
     }
   },

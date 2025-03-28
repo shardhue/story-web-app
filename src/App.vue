@@ -50,6 +50,7 @@ export default {
       this.storiesLoaded = false
       this.shownPages += 1;
       const url = "https://cryptodire.kontinentalist.com/api/v1/stories?page=" + this.shownPages;
+      
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -65,6 +66,7 @@ export default {
     }
   },
   created() {
+    //adds page 1 of the stories on site load
     this.addStories();
   }
 }
