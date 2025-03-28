@@ -1,5 +1,42 @@
-# Vue 3 + TypeScript + Vite
+# Story Web App
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A front-end app that fetches stories from an API to display.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Site Link
+
+View a live version of the app at: [shardhue.github.io/story-web-app/](https://shardhue.github.io/story-web-app/)
+
+## Local Setup
+
+1. Clone the repository:
+
+```
+git clone https://github.com/shardhue/story-web-app.git
+```
+
+2. Change directory to the story-web-app folder:
+
+```
+cd story-web-app
+```
+
+3. Install the NPM dependencies:
+
+```
+npm install
+```
+
+### Running the project
+
+To start the development server, run the following command:
+
+```
+npm run dev
+```
+
+To build and preview a production build, run the following two commands:
+
+```
+npm run build
+npm run preview
+```
